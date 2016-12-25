@@ -94,7 +94,7 @@
         var saleses = [];
         return {
             all: function () {
-                var dfd = $q.defer();
+                var dfd = $q.defer();//promise nesnesinin referansını bir değişkene atıyoruz
                 $http.get("http://test.aristolms.com/ws_get.asmx/AppPendingApproveSaleses?UserName=sysyon&Password=413406&Language=Tr").then(function (response) {
                     saleses = response.data;
                     //console.log(saleses);
