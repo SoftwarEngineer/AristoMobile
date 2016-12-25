@@ -1,0 +1,19 @@
+﻿<ion-view view-title="Onay Bekleyen Satışlar" onload="PendingApproveSaleses()">
+    <ion-content class="padding">
+        <ion-refresher on-refresh="refresh(true)" spinner="android"></ion-refresher>
+        <ion-list>
+            <ion-item item="item">Onay Bekleyen Satışlar</ion-item>
+            <ion-item ng-repeat="sales in saleses| filter:search" class="item-remove-animate item-icon-right">
+                <div class="item item-button-right">
+                    <h2>{{ sales.NameSurname }}</h2>
+                    <p>{{ sales.SellAmount }} TL</p>
+                    <div class="buttons">
+                        <button id="studentCreditId" value="{{sales.StudentCreditId}}" class="button button-small button-calm button-right" type="button" ng-click="Onayla({{sales.StudentCreditId}})">
+                            Onayla
+                        </button>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

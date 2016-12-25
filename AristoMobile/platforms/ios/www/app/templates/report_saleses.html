@@ -1,0 +1,108 @@
+﻿<ion-view view-title="Satış Raporu">
+    <ion-content>
+        <label class="item item-input">
+            <input type="text" ng-model="search" placeholder="Öğrenci Adı">
+        </label>
+        <div class="center">
+            <div class="row item item-divider">
+                <div class="col">
+                    <span class="input-label" id="lblBaslangicT">Başlangıç Tarihi:</span>
+                </div>
+                <div class="col">
+                    <input placeholder="Başlangıç Tarihi" type="text" name="SD" id="SD" style="width:170px;" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row item item-divider">
+                <div class="col">
+                    <span class="input-label" id="lblBitisT">Bitiş Tarihi:</span>
+                </div>
+                <div class="col">
+                    <label>
+                        <input type="date" name="FD" id="FD" style="width:170px;" />
+                    </label>
+                </div>
+            </div>
+            <div class="row item item-divider">
+                <div class="col">
+                    <span class="input-label" id="lblOgrenciTipi">Öğrenci Tipi:</span>
+                </div>
+                <div class="col">
+                    <select id="studentTypeSelect" ng-model="studentType" class="selectBtn">
+                        <option value="1">Bireysel</option>
+                        <option value="2">Kurumsal</option>
+                        <option value="">Tümü</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row item item-divider" ng-controller="reportSourceCtrl">
+                <div class="col">
+                    <span class="input-label" id="lblKaynak">Kaynak:</span>
+                </div>
+                <div class="col">
+                    <select id="sourceSelect" ng-model="mySource" ng-options="source.Source for source in sources track by source.Id" class="selectBtn"></select>
+                </div>
+            </div>
+            <div class="row item item-divider">
+                <div class="col">
+                    <span class="input-label" id="lblSatisDanismani">Satış Danışmanı:</span>
+                </div>
+                <div class="col">
+                    <input type="text" id="satisDanismani" style="width:170px;" />
+                </div>
+            </div>
+            <div class="row item item-divider">
+                <div class="col">
+                    <span class="input-label" id="lblEgitim">Eğitim:</span>
+                </div>
+                <div class="col">
+                    <input type="text" id="egitim" style="width:170px;" />
+                </div>
+            </div>
+            <div class="row item item-divider">
+                <div class="col">
+                    <span class="input-label" id="lblSatisDanismani">Ders Tipi:</span>
+                </div>
+                <div class="col">
+                    <select id="courseTypeSelect" ng-model="courseType" class="selectBtn">
+                        <option value="0" selected>Grup</option>
+                        <option value="1">Özel</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col col-33 col-offset-75">
+                <button class="button button-small button-balanced button-right" type="button" ng-click="refresh()">
+                    Rapor Oluştur
+                </button>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var today = new Date();
+            var dd = today.getDate();//sistem tarihini kayıt gösterilmesi için geriye attık
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear() - 2;
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            var today = dd + '-' + mm + '-' + yyyy;
+            document.getElementById("SD").defaultValue = today;
+        </script>
+        <p ng-show="search">{{search}} içeren kayıtlar</p>
+        <ion-search placeholder="ion Suche" filter="search"></ion-search>
+        <ion-list>
+            <ion-spinner ng-show="!pizzas" icon="spiral"></ion-spinner>
+            <ion-item class="item-divider"> Satış Raporu</ion-item>
+            <ion-item ng-repeat="sales in saleses| filter:search" class="item-remove-animate item-icon-right">
+                <p>Tarih: {{sales.CreateDate}}</p>
+                <p>Öğrenci: {{ sales.NameSurname }}</p>
+                <p>Eğitim:{{sales.Course}}</p>
+                <p>Eğitim Danışmanı:</p>
+                <p>Satış Tutarı: {{ sales.SellAmount }} TL</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
