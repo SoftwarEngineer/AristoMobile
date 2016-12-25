@@ -15,7 +15,6 @@
         $scope.todayssales = todayssaleses;
     })
 
-
     //html sayfasındaki ng-repeat değişkenken adı ve in den sonra gelen isimle buradaki scope. isim aynı olmak zorundadır.
     .controller("ReportPendingApproveCtrl", function ($scope, allsaleses, PendingApproveSaleses) {
         $scope.saleses = allsaleses;
