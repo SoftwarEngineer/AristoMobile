@@ -53,7 +53,6 @@
                 }
             })
 
-
             .state("app.login", {
                 url: "/login",
                 templateUrl: "app/templates/login.html",
