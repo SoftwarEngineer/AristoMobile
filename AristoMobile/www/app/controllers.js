@@ -136,27 +136,27 @@
           }
       })
 
-     .controller("loginCtrl", ["$scope", "$state", function ($scope, $state) {
+     .controller("loginCtrl", ["$scope", "$state", function ($scope, $state,$ionicPopup) {
          $scope.$state = $state
-         $scope.Login = function () {
-             var email = jQuery("#username").val();
-             var password = jQuery("#password").val();
-             var url = "http://test.aristolms.com/ws_functions.asmx/AppLoginControl?UserName=" + email + '&Password=' + password;
+         $scope.Login = function (Data) {
+             var UserName = Data.username;
+             var Password = Data.password;
+             console.log(Data);
+             var url = "http://test.aristolms.com/ws_functions.asmx/AppLoginControl?UserName=" + UserName + '&Password=' + Password;
              $.ajax({
                  url: url,
                  type: 'GET',
                  dataType: 'json',
-                 success: function (data) {
-                     if (data !== null) {
+                 success: function (Data) {
+                     if (Data !== null) {
 
                          $state.go("app.reportsaleses");
+                         console.log(Data);
                      }
-
                  },
 
                  error: function (x, y, z) {
                      alert("hata");
-
                  }
              });
          };

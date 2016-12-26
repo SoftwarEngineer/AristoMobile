@@ -15,30 +15,6 @@
         return myappService;
     }])
 
-    //.factory('Friends', function ($http, $rootScope, $stateParams) {
-    //    return {
-    //        all: function () {
-    //            return $http.get('http://localhost:26494/Api/MonthlySales')
-    //        },
-    //        get: function () {
-    //            return $http.get('https://friends.json/getOne', { params: { user_id: $rootScope.session, chat_id: $stateParams.idchat } })
-    //        },
-    //        add: function (id) {
-    //            return $http.get('https://friends.json/new', { params: { idfriends: id } })
-    //        }
-    //    };
-    //});
-
-    //.factory('Saleses', function ($http) {
-    //    return {
-    //        all: function() {
-    //            return $http.get("http://localhost:26494/Api/MonthlySales");
-    //            //return $http.get("http://test.aristolms.com/ws_get.asmx?op=AppReportInterviews", { params: { username: 'sysyon', password: '413400', startdate: '2015-01-01', finishdate: '2017-01-01' } });
-    //        }
-    //    };
-    //});
-
-
     .factory('Saleses', function ($http, $q) {
         var saleses = [];
         return {
